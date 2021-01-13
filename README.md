@@ -27,4 +27,13 @@ covid_cases{country="AE",status="dead"} 708
 covid_cases{country="AE",status="recovered"} 206114
 covid_cases{country="AF",status="confirmed"} 53489
 [...]
+new_covid_cases{country="AD",status="confirmed"} 96
+new_covid_cases{country="AD",status="dead"} 1
+new_covid_cases{country="AD",status="recovered"} 206
+new_covid_cases{country="AE",status="confirmed"} 3243
+new_covid_cases{country="AE",status="dead"} 6
+new_covid_cases{country="AE",status="recovered"} 2195
+new_covid_cases{country="AF",status="confirmed"} 46
+new_covid_cases{country="AF",status="dead"} 13
+[...]
 ```

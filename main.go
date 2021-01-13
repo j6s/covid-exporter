@@ -70,9 +70,14 @@ func gatherMetrics() *prometheus.Registry {
 		prometheus.GaugeOpts{Name: "covid_cases"},
 		[]string{"status", "country"},
 	)
+	newCases := prometheus.NewGaugeVec(
+		prometheus.GaugeOpts{Name: "new_covid_cases"},
+		[]string{"status", "country"},
+	)
 
 	registry := prometheus.NewRegistry()
 	registry.Register(cases)
+	registry.Register(newCases)
 
 	err, data := getData()
 	if err != nil {
@@ -84,6 +89,9 @@ func gatherMetrics() *prometheus.Registry {
 		cases.WithLabelValues("confirmed", country.CountryCode).Set(float64(country.TotalConfirmed))
 		cases.WithLabelValues("dead", country.CountryCode).Set(float64(country.TotalDeaths))
 		cases.WithLabelValues("recovered", country.CountryCode).Set(float64(country.TotalRecovered))
+		newCases.WithLabelValues("confirmed", country.CountryCode).Set(float64(country.NewConfirmed))
+		newCases.WithLabelValues("dead", country.CountryCode).Set(float64(country.NewDeaths))
+		newCases.WithLabelValues("recovered", country.CountryCode).Set(float64(country.NewRecovered))
 	}
 
 	return registry
